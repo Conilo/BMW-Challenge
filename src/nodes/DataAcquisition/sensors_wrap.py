@@ -9,8 +9,8 @@ import colorbk as color
 # Creates sensor objects
 ultrasonic_sensor = distance.distancebk(3)
 power_sensor = power.powerbk()
-left_color_sensor = color.colorbk(1)
-right_color_sensor = color.colorbk(2)
+left_color_sensor = color.colorbk(2)
+right_color_sensor = color.colorbk(1)
 
 def read_ultrasonic():
     tm.sleep(0.01)
@@ -23,8 +23,8 @@ def read_drained_current():
     return power_sensor.readcurrent()
 
 def read_color_values():
-    return(right_color_sensor.read("white2"),
-           left_color_sensor.read("white2"))
+    return(right_color_sensor.read("white"),
+           left_color_sensor.read("white"))
 
 def read_color_strings():
     return(right_color_sensor.read(),

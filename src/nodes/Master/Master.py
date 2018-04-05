@@ -24,8 +24,8 @@ def on_new_sensors_msg(data):
     master.distance = data.distance
     master.voltage = data.voltage
     master.current = data.current
-    master.left_sensor_value = data.color_values[0]
-    master.right_sensor_value = data.color_values[1]
+    #master.left_sensor_value = data.color_values[0]
+    #master.right_sensor_value = data.color_values[1]
     master.left_sensor_string = data.color_strings[0]
     master.right_sensor_string = data.color_strings[1]
 
@@ -38,7 +38,8 @@ def main():
     rospy.Subscriber(
         '/sensors_data',
         Sensors,
-        on_new_sensors_msg)
+        on_new_sensors_msg,
+        queue_size = 1)
 
     rospy.on_shutdown(my_shutdown)
 

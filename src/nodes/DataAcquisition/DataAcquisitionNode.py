@@ -23,22 +23,23 @@ def read_sensors():
     while not rospy.is_shutdown():
 
         # Gets sensors data
-        #distance_read =  sw.read_ultrasonic()
-        distance_read = np.random.normal(50, 10)
-        voltage_read = sw.read_battery_voltage()
-        current_read = sw.read_drained_current()
         color_values_read = sw.read_color_values()
+        #distance_read =  sw.read_ultrasonic()
+        distance_read = int(np.random.normal(50, 10))
+        voltage_read = int(sw.read_battery_voltage())
+        current_read = int(sw.read_drained_current())
         color_strings_read = sw.read_color_strings()
 
 	# Verify received data
-        if (distance_read != 'error'):
+        if type(distance_read) is int:
 	    msg.distance = distance_read
-        if (voltage_read != 'error'):
+        if type(voltage_read) is int:
             msg.voltage = voltage_read
-        if (current_read != 'error'):
+        if type(current_read) is int:
 	    msg.current = current_read
-
-	msg.color_values = color_values_read
+        types = [type(i) is int for i in color_values_read]
+        if all(types):
+	    msg.color_values = color_values_read
         msg.color_strings = color_strings_read
 
 	# Publish message

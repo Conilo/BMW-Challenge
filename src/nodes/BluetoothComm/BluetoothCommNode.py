@@ -24,7 +24,8 @@ def on_new_sensors_msg(data):
 
     # Get some data
     try:
-        receivedData = client_socket.recv(8)
+        print("Waitting request...")
+        receivedData = client_socket.recv(1024)
         # Concatenate data to be sent
         sensors_data = \
             " " + "D=" + str(data.distance) + "+" \

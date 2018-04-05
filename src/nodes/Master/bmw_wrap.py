@@ -1,3 +1,4 @@
+
 import sys
 sys.path.append("/home/pi/bmw/libs")
 
@@ -23,3 +24,4 @@ def shutdown():
 def set_motors_speeds(vel_L, vel_R):
     left_motor.set(vel_L)
     right_motor.set(vel_R)
+    tm.sleep(0.2)
