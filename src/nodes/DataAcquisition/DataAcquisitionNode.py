@@ -23,8 +23,8 @@ def read_sensors():
     while not rospy.is_shutdown():
 
         # Gets sensors data
-        distance_read =  sw.read_ultrasonic()
-        #distance_read = np.random.normal(50, 10)
+        #distance_read =  sw.read_ultrasonic()
+        distance_read = np.random.normal(50, 10)
         voltage_read = sw.read_battery_voltage()
         current_read = sw.read_drained_current()
         color_values_read = sw.read_color_values()
