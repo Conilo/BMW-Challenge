@@ -1,0 +1,25 @@
+<!-- Run all nodes  -->
+<launch>
+    
+    <node name="DataAcquisition" 
+        pkg="bmw" 
+        type="DataAcquisitionNode.py"
+        respawn="true">
+
+        <!-- Set Parameters for Image DataAcquisition node -->
+        <param name="calibration_mode" value="false" type="bool" />
+        
+    </node>
+
+    <node name="BluetoothComm" 
+        pkg="bmw" 
+        type="BluetoothCommNode.py"
+        respawn="true">
+
+        <!-- Set Parameters for LaneDetection node -->
+        <param name="direct_mode" value="false" type="bool" />
+        
+    </node>
+        
+
+</launch>
