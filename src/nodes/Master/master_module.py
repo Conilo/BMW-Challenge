@@ -124,7 +124,7 @@ class Master():
             # Adds mapping routine to tasks pile
             self.add_task(Task(MAPPING))
                 
-        # Then cheks is mapping is done
+        # Then cheks if mapping is done
         elif (self.mapping_done == True and 
              current_task.ID == IDLE):
             
@@ -175,7 +175,7 @@ class Master():
                 self.left_sensor_string,
                 self.right_sensor_string)
             
-            bw.board.Set_Led(2,0)
+            bw.board.Set_Led(3,0)
             
 
     def run(self):
