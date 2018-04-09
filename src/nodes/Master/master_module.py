@@ -7,13 +7,6 @@ IDLE = 0
 MAPPING = 1
 ESCAPING = 2
 
-# Task names descriptions
-task_desc = {
-    IDLE: 'Waitting...',
-    MAPPING: 'Mapping...',
-    ESCAPING: 'Escaping...'
-    }
-
 # Classes definitions
 class Task:
     """
