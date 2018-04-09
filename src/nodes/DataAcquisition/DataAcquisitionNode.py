@@ -7,14 +7,17 @@ from bmw.msg import Sensors
 # Global parameters
 RATE = 20
 
+# Function that collects data from sensors
 def read_sensors():
 
+    # Topic to publish sensor's data
     sensors_pub = \
         rospy.Publisher(
             '/sensors_data',
             Sensors,
             queue_size = 1)
-
+	
+    # Creates an msg object of Sensors type.
     msg = Sensors()
 
     rospy.init_node('DataAcquisition')
@@ -22,15 +25,14 @@ def read_sensors():
 
     while not rospy.is_shutdown():
 
-        # Gets sensors data
-        color_values_read = sw.read_color_values()
-        #distance_read =  sw.read_ultrasonic()
-        distance_read = int(np.random.normal(50, 10))
+        # Reads sensors
+        color_values_read = int(sw.read_color_values())
+        distance_read =  int(sw.read_ultrasonic())
         voltage_read = int(sw.read_battery_voltage())
         current_read = int(sw.read_drained_current())
         color_strings_read = sw.read_color_strings()
 
-	# Verify received data
+	# Verify data to be sent
         if type(distance_read) is int:
 	    msg.distance = distance_read
         if type(voltage_read) is int:
@@ -40,9 +42,8 @@ def read_sensors():
         types = [type(i) is int for i in color_values_read]
         if all(types):
 	    msg.color_values = color_values_read
-        msg.color_strings = color_strings_read
 
-	# Publish message
+	# Publishes message
         sensors_pub.publish(msg)
 
 	# Spin
